@@ -78,6 +78,7 @@
     border:1.5px solid var(--border);
     border-radius:var(--radius-sm);
     padding:10px 12px 10px 22px;
+    position:relative;
   }
   .nav-mark{font-family:'Space Grotesk', sans-serif; font-size:19px; font-weight:700;}
   .nav-links{display:flex; gap:28px; font-size:14.5px; font-weight:500;}
@@ -88,7 +89,45 @@
     background:var(--ink); padding:11px 20px; border-radius:var(--radius-sm);
     white-space:nowrap;
   }
-  @media (max-width:820px){ .nav-links{display:none;} }
+  .nav-burger{
+    display:none;
+    background:none; border:none; cursor:pointer;
+    padding:8px; margin-right:4px;
+    flex-direction:column; gap:5px; align-items:center; justify-content:center;
+  }
+  .nav-burger span{
+    display:block; width:20px; height:2px; background:var(--ink);
+    transition:transform .25s ease, opacity .2s ease;
+  }
+  .nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-burger.open span:nth-child(2){opacity:0;}
+  .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  .nav-mobile-panel{
+    display:none;
+    flex-direction:column;
+    gap:2px;
+    background:var(--paper);
+    border:1.5px solid var(--border);
+    border-radius:var(--radius-lg);
+    margin-top:10px;
+    padding:14px;
+    position:absolute;
+    left:0; right:0; top:100%;
+  }
+  .nav-mobile-panel a{
+    text-decoration:none; color:var(--ink);
+    font-family:'Space Grotesk', sans-serif; font-weight:500; font-size:18px;
+    padding:14px 10px; border-bottom:1px solid var(--border);
+  }
+  .nav-mobile-panel a:last-child{border-bottom:none;}
+  .nav-mobile-panel.open{display:flex;}
+
+  @media (max-width:820px){
+    .nav-links{display:none;}
+    .nav-burger{display:flex;}
+    .nav-cta{display:none;}
+  }
 
   /* HERO */
   .hero{
@@ -356,14 +395,42 @@
       <div class="nav-links">
         <a href="#work">Work</a>
         <a href="#process">Process</a>
-        <a href="#process">How we do it</a>
         <a href="#founders">Founders</a>
         <a href="#services">Services</a>
       </div>
       <a class="nav-cta" href="#contact" onclick="document.getElementById('name')?.focus();">Start a project</a>
+      <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-mobile-panel" id="nav-mobile-panel">
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#founders">Founders</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Start a project</a>
+      </div>
     </div>
   </div>
 </nav>
+
+<script>
+  const navBurger = document.getElementById('nav-burger');
+  const navPanel = document.getElementById('nav-mobile-panel');
+
+  navBurger.addEventListener('click', function () {
+    const isOpen = navPanel.classList.toggle('open');
+    navBurger.classList.toggle('open', isOpen);
+    navBurger.setAttribute('aria-expanded', isOpen);
+  });
+
+  navPanel.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      navPanel.classList.remove('open');
+      navBurger.classList.remove('open');
+      navBurger.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
 
 <header class="hero">
   <div class="blob blob-1"></div>
