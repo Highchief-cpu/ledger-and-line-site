@@ -133,3 +133,232 @@
   }
   .blob{
     position:absolute; z-index:-1; border-radius:50%;
+    filter:blur(60px); opacity:0.55;
+  }
+  .blob-1{width:480px; height:480px; background:var(--lime); top:-160px; right:-120px;}
+  .blob-2{width:360px; height:360px; background:var(--violet); opacity:0.35; top:120px; left:-140px;}
+
+  .hero h1{font-size:clamp(44px, 7vw, 84px); line-height:1.0; margin-top:24px;}
+  .hero h1 .accent{color:var(--violet-deep);}
+  .hero-sub{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:32px; margin-top:36px; flex-wrap:wrap;
+    padding-top:32px; border-top:1.5px solid var(--border);
+  }
+  .hero-sub p{color:var(--ink-soft); font-size:17px; max-width:42ch; margin:0;}
+  .hero-buttons{display:flex; gap:12px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:15px 26px; border-radius:var(--radius-sm);
+    text-decoration:none; font-size:15px; font-weight:600;
+    font-family:'Space Grotesk', sans-serif; transition:all .2s ease;
+  }
+  .btn-primary{background:var(--ink); color:var(--paper);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(20,19,17,0.22);}
+  .btn-outline{border:1.5px solid var(--ink); color:var(--ink);}
+
+  /* CASE STUDIES */
+  .section-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:48px; flex-wrap:wrap;}
+  .eyebrow{font-size:13px; font-weight:600; color:var(--violet-deep); margin-bottom:10px; display:block;}
+  .work-container{background:var(--dark); color:var(--paper); border-radius:40px; margin:0 20px; padding:90px 40px;}
+  .case{display:grid; grid-template-columns:1.1fr 1fr; gap:48px; align-items:stretch;}
+  .case-visual{background:#222; border-radius:var(--radius-lg); overflow:hidden; aspect-ratio:4/3;}
+  .case-visual img{width:100%; height:100%; object-fit:cover;}
+  .case-card{background:rgba(246,243,236,0.05); border:1.5px solid rgba(246,243,236,0.1); border-radius:var(--radius-lg); padding:36px; display:flex; flex-direction:column; justify-content:space-between;}
+  .case-tag{font-size:13px; color:var(--lime); font-weight:600; margin-bottom:14px;}
+  .case h3{font-size:clamp(26px,3vw,34px); margin-bottom:14px;}
+  .case-meta{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px;}
+  .case-meta span{font-size:12.5px; border:1px solid rgba(246,243,236,0.2); padding:6px 12px; border-radius:var(--radius-sm); color:rgba(246,243,236,0.8);}
+  .case-stats{display:grid; grid-template-columns:1fr 1fr; gap:20px; border-top:1px solid rgba(246,243,236,0.1); padding-top:22px; margin-top:26px;}
+  .case-stats h4{font-size:12px; color:rgba(246,243,236,0.5); margin-bottom:6px;}
+  .case-stats p{font-family:'Space Grotesk', sans-serif; font-size:17px; margin:0;}
+
+  /* FOUNDERS */
+  .founders{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .founder{background:var(--card); border:1.5px solid var(--border); border-radius:var(--radius-lg); padding:32px; display:grid; grid-template-columns:120px 1fr; gap:24px; align-items:start;}
+  .founder-photo{aspect-ratio:1/1; background:#eee; border-radius:var(--radius-md); overflow:hidden;}
+  .founder-photo img{width:100%; height:100%; object-fit:cover;}
+  .founder h3{font-size:23px; margin-bottom:4px;}
+  .founder .role{color:var(--violet-deep); font-size:13.5px; font-weight:600; margin-bottom:12px;}
+  .founder p.bio{color:var(--ink-soft); font-size:14.5px; margin:0;}
+
+  /* FORM */
+  .contact{background:linear-gradient(155deg, var(--violet), var(--violet-deep)); color:var(--paper); border-radius:40px; margin:0 20px; padding:90px 44px;}
+  .form-card{background:rgba(246,243,236,0.1); border:1.5px solid rgba(246,243,236,0.2); border-radius:var(--radius-lg); padding:32px;}
+  .form-row{margin-bottom:18px;}
+  .form-row label{display:block; font-size:13px; font-weight:600; margin-bottom:8px;}
+  .form-row input, .form-row select, .form-row textarea{width:100%; background:rgba(246,243,236,0.95); border-radius:12px; padding:13px 16px; border:none; outline:none; font-family:'Sora',sans-serif;}
+  .form-status{font-size:14px; margin-top:14px; display:none; font-weight:600;}
+  .form-status.success{color:var(--lime); display:block;}
+  .form-status.error{color:#FFB4A2; display:block;}
+
+  @media (max-width:820px){
+    .case, .founders, .contact-grid{grid-template-columns:1fr;}
+    .founder{grid-template-columns:80px 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-pill">
+      <div class="nav-mark">Ledger &amp; Line</div>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#founders">Founders</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="nav-cta" href="#contact">Start a project</a>
+      <button class="nav-burger" id="nav-burger"><span></span><span></span><span></span></button>
+      <div class="nav-mobile-panel" id="nav-mobile-panel">
+        <a href="#work">Work</a><a href="#founders">Founders</a><a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="blob blob-1"></div><div class="blob blob-2"></div>
+  <div class="wrap">
+    <span class="chip lime">Design + copy, one studio</span>
+    <h1>We build brands that look good <span class="accent">and</span> sell.</h1>
+    <div class="hero-sub">
+      <p>Ledger &amp; Line is a two-person studio pairing sharp visual design with copy that actually gets read.</p>
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="#work">View our work</a>
+        <a class="btn btn-outline" href="#contact">Let's work together</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="work">
+  <div class="wrap">
+    <div class="work-container">
+      <div class="section-head">
+        <div><span class="eyebrow">Selected work</span><h2>Basin Skincare</h2></div>
+      </div>
+      <div class="case">
+        <div class="case-visual"><img src="images/basin-hero.png" alt="Basin"></div>
+        <div class="case-card">
+          <div>
+            <div class="case-tag">Minimalist E-commerce</div>
+            <h3>Skincare, reduced to three products.</h3>
+            <p style="color:rgba(255,255,255,0.7)">A practice brand built to test our full process from market research to Framer launch.</p>
+            <div class="case-meta">
+                <span>UI/UX Design</span>
+                <span>Framer Build</span>
+                <span>Brand Voice</span>
+            </div>
+          </div>
+          <div class="case-stats">
+            <div><h4>Role</h4><p>Design & Copy</p></div>
+            <div><h4>Outcome</h4><p>Proof of Concept</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="founders">
+  <div class="wrap">
+    <div class="section-head"><div><span class="eyebrow">Team</span><h2>Meet the founders</h2></div></div>
+    <div class="founders">
+      <div class="founder">
+        <div class="founder-photo">
+            <img src="images/founder-one.jpg" alt="Founder One - Design">
+        </div>
+        <div>
+          <h3>Founder One</h3><div class="role">Design &amp; development</div>
+          <p class="bio">Responsible for the visual experience — website design, UI/UX, Framer builds, and the studio's own portfolio.</p>
+        </div>
+      </div>
+      <div class="founder">
+        <div class="founder-photo">
+            <img src="images/founder-two.jpg" alt="Founder Two - Copy">
+        </div>
+        <div>
+          <h3>Founder Two</h3><div class="role">Copywriting &amp; marketing</div>
+          <p class="bio">Responsible for the words and the thinking behind them — messaging, copywriting, research, and marketing strategy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact">
+      <div class="contact-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:40px;">
+        <div>
+          <h2>Start a project</h2>
+          <p>Tell us what you're building. We reply within 2 business days.</p>
+        </div>
+        <div class="form-card">
+          <form id="project-form">
+            <div class="form-row"><label>Name</label><input type="text" id="name" name="name" required placeholder="Your name"></div>
+            <div class="form-row"><label>Email</label><input type="email" id="email" name="email" required placeholder="you@company.com"></div>
+            <div class="form-row">
+              <label>Service</label>
+              <select name="service">
+                  <option>Full Brand Launch</option>
+                  <option>Website Design + Build</option>
+                  <option>Copywriting only</option>
+                  <option>Something else</option>
+              </select>
+            </div>
+            <div class="form-row"><label>Message</label><textarea name="message" id="message" required style="height:100px" placeholder="What are you working on?"></textarea></div>
+            <button type="submit" class="btn btn-primary" style="width:100%; background:var(--lime); color:var(--ink); border:none; justify-content:center;">Send it over</button>
+            <p class="form-status" id="form-status"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; padding:40px 0; color:var(--ink-soft); font-size:14px;">
+    <span>Ledger &amp; Line © 2026</span><span>hello@ledgerandline.com</span>
+  </div>
+</footer>
+
+<script>
+  // Navigation
+  const burger = document.getElementById('nav-burger');
+  const panel = document.getElementById('nav-mobile-panel');
+  burger.onclick = () => { panel.classList.toggle('open'); burger.classList.toggle('open'); };
+
+  // Formspree Integration
+  const form = document.getElementById('project-form');
+  const status = document.getElementById('form-status');
+  form.onsubmit = async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button');
+    const originalText = btn.textContent;
+    
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    try {
+      const resp = await fetch("https://formspree.io/f/xjyveqlz", {
+        method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' }
+      });
+      if (resp.ok) {
+        status.textContent = "Thanks — we'll be in touch soon.";
+        status.className = "form-status success";
+        form.reset();
+      } else { throw new Error(); }
+    } catch {
+      status.textContent = "Error sending. Please email us directly.";
+      status.className = "form-status error";
+    }
+    btn.textContent = originalText;
+    btn.disabled = false;
+  };
+</script>
+
+</body>
+</html>
