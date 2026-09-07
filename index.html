@@ -157,7 +157,11 @@
   .contact{ background:linear-gradient(155deg, var(--violet), var(--violet-deep)); color:var(--paper); border-radius:40px; margin:0 20px; padding:80px 40px; }
   .form-card{ background:rgba(246,243,236,0.1); border:1.5px solid rgba(246,243,236,0.2); border-radius:var(--radius-lg); padding:32px; }
   .form-row{margin-bottom:18px;}
-  .form-row input, .form-row select, .form-row textarea{ width:100%; background:rgba(246,243,236,0.95); border:none; border-radius:12px; padding:13px 16px; font-family:'Sora'; outline:none; font-size: 15px; }
+  .form-row input, .form-row select, .form-row textarea{ width:100%; background:rgba(246,243,236,0.95); border:none; border-radius:12px; padding:13px 16px; font-family:'Sora'; outline:none; font-size: 15px; color: var(--ink); }
+  
+  /* Select specific styling */
+  select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23141311' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: calc(100% - 16px) center; }
+
   .form-status{ font-size:14px; margin-top:14px; display:none; font-weight:600; }
   .form-status.success{color:var(--lime); display:block;}
 
@@ -304,7 +308,7 @@
   <div class="wrap">
     <div class="section-head">
         <div><span class="eyebrow">Services</span><h2>Two disciplines. One team.</h2></div>
-        <p class="note">We don't hand you off between people — the same two founders carry your project start to finish.</p>
+        <p class="note">The same two founders carry your project from first strategy session to final launch.</p>
     </div>
     <div class="services-grid">
       <div class="service-col">
@@ -340,6 +344,18 @@
           <form id="project-form">
             <div class="form-row"><input type="text" id="name" name="name" placeholder="Name" required></div>
             <div class="form-row"><input type="email" id="email" name="email" placeholder="Email" required></div>
+            
+            <!-- RESTORED SERVICE SELECT -->
+            <div class="form-row">
+              <select id="project-type" name="project_type" required>
+                <option value="" disabled selected>What do you need?</option>
+                <option>Website design + build</option>
+                <option>Copywriting only</option>
+                <option>Brand messaging / strategy</option>
+                <option>Something else</option>
+              </select>
+            </div>
+
             <div class="form-row"><textarea id="message" name="message" placeholder="Project details" required style="height:100px"></textarea></div>
             <button type="submit" class="btn btn-primary" style="width:100%; background:var(--lime); color:var(--ink); border:none; justify-content:center;">Send it over</button>
             <p class="form-status" id="form-status"></p>
@@ -367,7 +383,7 @@
     el.addEventListener('mouseleave', () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
   });
 
-  // Scroll Reveal Logic
+  // Reveal Logic
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
   }, { threshold: 0.1 });
@@ -379,7 +395,7 @@
   burger.onclick = () => { panel.classList.toggle('open'); burger.classList.toggle('open'); };
   panel.querySelectorAll('a').forEach(a => a.onclick = () => { panel.classList.remove('open'); burger.classList.remove('open'); });
 
-  // Form Logic
+  // Form Logic (Formspree ID: xjyveqlz)
   const form = document.getElementById('project-form');
   const status = document.getElementById('form-status');
   form.onsubmit = async (e) => {
